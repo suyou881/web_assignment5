@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        width: 90%;
+        margin: 0 auto;
+        max-width: 1100px;
+        min-width: 540px;
+        height: auto;
+        text-align: center;
+    }
+    .bt{
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 10px;
+        margin-bottom: 50px;
+        margin-top: 30px;
+        padding: 10px;
+    }
+    #resume{
+        background: white;
+        color: black;
+    }
+    #con_me{
+        background: black;
+        color: white;
+    }
+    #container{
+        
+        background: dodgerblue;
+    }
+    #p_name{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 45px;
+        font-weight: bold;
+    }
+    #container p{
+        color: white;
+    }
+    img{
+        margin-top: 70px;
+        max-width: 1100px;
+        width: 300px;
+    }
+    #div_resume{
+        height:180px;
+    }
+    .d_resume{
+        box-sizing: border-box;
+        width: 50%;
+        display: inline-block;
+        position: relative;
+        text-align: left;
+        float: left;
+        padding: 10px;
+    }
+    .d_resume p1{
+        font-size: 20px;
+        font-weight: 800;
+    }
+    ul{
+        list-style: none;
+        padding: 0;
+    }
+    li{
+        margin-bottom: 10px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    li span:nth-child(1){
+        display: inline-block;
+        width: 100px;
+    }
+    #container_basic_photo{
+        position: relative;
+        background: gray;
+        height: min-content;
+        height: 280px;
+    }
+    #basic_photo{
+        width: 200px;
+        height: 200px;
+        background: red;
+        left: 50%;
+        top:50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        border: solid black 1px;
+    }
+    .form_field span{
+        text-align: left;
+        display: block;
+        margin: 20px 0 20px 50px;
+    }
+    .form_field input{
+        width: 90%;
+        padding: 10px 0;
+        max-width: 1100px;
+    }
+    #label_img{
+        background-color: chocolate;
+        border-radius: 3px;
+        color: white;
+        cursor: pointer;
+        padding: 5px 20px;
+        position: relative;
+        top: 250px;
+    }
+    #div_form{
+       position: relative;
+       top: 50px;
+    }
+    #div_education{
+        height: 250px;
+        margin-bottom: 30px;
+    }
+    #div_education span{
+       font-size: 35px;
+    }
+    #div_edu_table{
+        display: table;
+        width: 100%;
+    }
+    .d_education{
+        display: table-cell;
+        height: 200px;
+        width: 100%;
+        box-shadow: 10px 10px 10px rgb(165, 162, 162);
+    }
+    #div_table_first{
+        width: 35%;
+    }
+    #div_table_second{
+        width: 65%;
+    }
+    input[type="radio"]{
+        margin-top: -1px;
+        vertical-align: middle;
+        width: auto;
+    }
+    #hourly_rate{
+        width: 110px;
+        display: inline-block;
+        margin: 0px;
+        padding: 1px 0px;
+        display: none;
+    }
+    #div_table_first{
+        color: white;
+    }
+    #div_table_first span:nth-child(1){
+        font-size: 20px;
+        top: 50px;
+        position: relative;
+    }
+    #div_table_first span:nth-child(2){
+        font-size: 30px;
+        top: 70px;
+        position: relative;
+    }
+    #div_table_second span{
+        position: relative;
+        display: inline-block;
+        font-size: 20px;
+    }
+    #div_table_second span:nth-child(1){
+        font-size: 30px;
+
+        top:20px;
+    }
+    #div_table_second span:nth-child(2){
+        color: gray;
+        font-size: 20px;
+        top:50px;
+        left: -250px;
+    }
+    #div_table_second span:nth-child(3){
+        top:70px;
+        color: gray;
+        left: -85px;
+        margin-top: 5px;
+        font-size: 15px;
+    }
+    #div_table_second span:nth-child(4){
+        top:70px;
+        color: gray;
+        left: -68px;
+        font-size: 15px;
+    }
+
+    #div_basic_info{
+        background: lightseagreen;
+    }
+    #submit{
+        margin: 20px 0;
+        padding: 10px 15px;
+        font-size: 25px;
+    }
+</style>
+<script>
+    window.onload=function(){
+        document.getElementById("div_form").style.display="block";
+    }
+    function open_contact(){
+        let div_form = document.getElementById("div_form");
+        if(div_form.style.display == "none")
+        div_form.style.display = "block";
+        else
+        div_form.style.display="none";
+    }
+
+    function upload_photo(e){
+        let reader = new FileReader;
+        reader.onload = function(e){
+            let img = document.createElement("img");
+            img.src = e.target.result;
+            img.alt = "photo"
+            img.style.width="100%";
+            img.style.height="100%";
+            img.style.objectFit="contain";
+            img.style.margin="0";
+            document.getElementById("basic_photo").append(img);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    }
+    
+    function setDisplay(value){
+        let check = document.getElementsByName("r_option");
+        check.forEach((node)=>{
+            if(node.checked){
+                if(node.value == "Hiring"){
+                    document.getElementById("hourly_rate").style.display = "inline-block";
+                    document.getElementById("hourly_rate").required = true;
+                }
+                else{
+                    document.getElementById("hourly_rate").style.display = "none";
+                    document.getElementById("hourly_rate").required = false;
+                }
+                
+            }
+        })
+    }
+
+    function check_radio(){
+        var chk_radio = document.getElementsByName('r_option');
+		var sel_type = null;
+		for(var i=0;i<chk_radio.length;i++){
+			if(chk_radio[i].checked == true){ 
+				sel_type = chk_radio[i].value;
+			}
+		}
+		if(sel_type == null){
+            alert("Check the option"); 
+            return false;
+		}
+    }
+
+</script>
+<body>
+    <div id="container">
+        <img src="/img/mine.jpg" alt="my photo">
+        <br>
+        <p id="p_name">Hyungchul You</p>
+        <p>Web Developer, Software Engineer</p>
+        <input type="button" value="Resume" class="bt" id="resume">
+        <input type="button" value="Contact me" class="bt" id="con_me" onclick="open_contact()">
+    </div>
+    <div id="div_resume">
+        <div id="about_me" class="d_resume">
+            <p1>About me</p1>
+            <p>
+                nsdklfgndsfkl dfkgnsdf klg jsdfklg jsdflkg jsdflgjsdfklgjsdfg sdlg. asldkjf aslkdklasjd fklasf jaslf j aisofj o/asdf jasilfl. asdfhasduofhasdma caksf bnsakdf 
+            </p>
+        </div>
+        <div id="basic_info" class="d_resume">
+            <p1>Basic Information</p1>
+            <ul>
+                <li>
+                    <span>AGE:</span>
+                    <span>31</span>
+                    
+                </li>
+                <li>
+                    <span>EMAIL:</span>
+                    <span>hyou3@myseneca.ca</span>
+                </li
+                ><li>
+                    <span>LANGUAGE:</span>
+                    <span>Korean, English</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+        <div id="div_education">
+            <span>Education</span>
+            <div id="div_edu_table">
+                <div id="div_table_first" class="d_education" style="background-color: rgb(57, 145, 57);">
+                    <span>2020 - 2022(expected)</span>
+                    <span>Bachelor's Degree</span>
+                </div>
+                <div id="div_table_second" class="d_education" >
+                    <span>Bachelor's Degree</span>
+                    <span>SENECA COLLEGE</span>
+                    <span>Under the supervision of Dr.Super.</span>
+                    <span>Awarded with all sholarships in the U.S</span>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    
+    <div id="div_form">
+        <form action=" https://httpbin.org/post" method="POST" onsubmit="return check_radio();">
+            <div id="div_basic_info">
+                <div id="container_basic_photo">
+                    <div id="basic_photo"></div>
+                    <label for="upload_img" id="label_img">Upload your photo</label>
+                    <input type="file" id="upload_img" accept="image/*" name="up_img" style="display: none" onchange="upload_photo(event)">
+                </div>
+                <div class="form_field">
+                    <span>First Name</span>
+                    <input type="text" name="f_name" required>
+                </div>
+                <div class="form_field">
+                    <span>Last Name</span>
+                    <input type="text" name="l_name" required>
+                </div>
+                <div class="form_field">
+                    <span>Email Adress</span>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form_field">
+                    <span>Address</span>
+                    <input type="text" name="address" required>
+                </div>
+                <div class="form_field">
+                    <span>City</span>
+                    <input type="text" list="depList" name="city" required>
+                    <datalist id="depList">
+                        <option value="Calgary"></option>
+                        <option value="Edmonton"></option>
+                        <option value="Vancouver, BC"></option>
+                        <option value="Fredericton – St John"></option>
+                        <option value="Moncton"></option>
+                        <option value="Halifax"></option>
+                        <option value="Hamilton"></option>
+                        <option value="Kitchener"></option>
+                        <option value="London, Canada"></option>
+                        <option value="Ottawa"></option>
+                        <option value="Toronto"></option>
+                        <option value="Montréal"></option>
+                        <option value="Québec"></option>
+                    </datalist>
+                </div>
+                <div class="form_field">
+                    <span>Postal Code</span>
+                    <input type="text" name="postal_code" pattern="^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$" required>
+                </div>
+                <div class="form_field" >
+                    <span>Options</span>
+                    <div id="div_radio" style="text-align: left; margin-left: 50px;">
+                        <input type="radio" value="Question" name="r_option" onclick="setDisplay(this.value)"> Question
+                        <input type="radio" value="Comment" name="r_option" onclick="setDisplay(this.value)"> Comment
+                        <input type="radio" value="Hiring" name="r_option" id="hiring" onclick="setDisplay(this.value)"> Hiring
+                        <input type="number" placeholder="Enter hourly rate" name="hourly_rate" id="hourly_rate">
+                    </div>
+                </div>
+                <div class="form_field">
+                    <span>Message</span>
+                    <textarea name="message" id="message" cols="90" rows="10"></textarea>
+                </div>
+                <input type="submit" value="submit" id="submit">
+            </div>
+        </form>
+        
+    </div>
+</body>
+</html>
